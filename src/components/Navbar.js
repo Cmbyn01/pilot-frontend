@@ -1,5 +1,6 @@
-// src/components/Navbar.js
+// need to change navbar 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -71,14 +72,14 @@ const Navbar = ({ searchQuery, handleSearchChange, handleSearchSubmit, user }) =
                   </a>
                 </button> */}
                 <button className="btn p-0 rounded rounded-3">
-                  <a
-                    className="btn text-decoration-none text-white"
-                    style={{ backgroundColor: "#1d3b53" }}
-                    href="/dashboard"
-                  >
-                    Dashboard
-                  </a>
-                </button>
+        <Link
+          to="/dashboard"
+          className="btn text-decoration-none text-white"
+          style={{ backgroundColor: "#1d3b53" }}
+        >
+          Dashboard
+        </Link>
+      </button>
               </div>
             
               <div className="d-flex align-items-center gap-2">

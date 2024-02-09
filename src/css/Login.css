@@ -1,0 +1,7 @@
+/*body background css*/
+body{
+    padding: 0;
+    margin: 0;
+    /* background: url('../images/login.jpg')no-repeat; */
+    background-size: cover;
+}

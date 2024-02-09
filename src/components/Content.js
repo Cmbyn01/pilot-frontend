@@ -53,7 +53,7 @@ const Content = () => {
       </main>
 
       <section className="p-5 pt-2 d-flex gap-5 justify-content-center flex-wrap">
-        {/* ... The rest of your content */}
+        
       </section>
 
       <section className="p-5 mb-4">
@@ -70,7 +70,25 @@ const Content = () => {
             Explore All
           </a>
         </div>
-        {/* ... The rest of your content */}
+      </section>
+
+      <section className="p-5 pt-2 d-flex gap-5 justify-content-center flex-wrap">
+        {/* New Section */}
+        <section className="w-75 m-auto d-flex justify-content-between rounded rounded-3 p-4 align-items-center mb-4" style={{ backgroundColor: '#17a2b8' }}>
+          <div className="w-75">
+            <h1 className="text-white fw-bolder">Become an Instructor!</h1>
+            <p className="text-white m-0">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. At ipsa et odit
+              excepturi voluptatibus, eaque ad eum facilis id repellat? Temporibus
+              voluptatibus perspiciatis odio itaque error omnis, necessitatibus aut
+              vitae.
+            </p>
+          </div>
+          <div>
+            <button className="btn btn-danger">Start Teaching Today</button>
+          </div>
+        </section>
+        {/* End of New Section */}
       </section>
     </>
   );
