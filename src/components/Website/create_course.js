@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const CreateCourseForm = () => {
   const [courseData, setCourseData] = useState({
