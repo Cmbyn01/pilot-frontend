@@ -1,0 +1,52 @@
+.instagram-theme {
+  font-family: Arial, sans-serif;
+}
+
+#comment-container {
+  width: 100%;
+  max-width: 600px;
+  /* margin: auto; */
+  padding: 20px;
+  /* max-height: 500px; */
+  overflow-y: auto;
+}
+
+#comment-input {
+  width: calc(100% - 40px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#add-comment-btn {
+  width: 100px;
+  padding: 10px;
+  background-color: #3897f0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#add-comment-btn:hover {
+  background-color: #2684f0;
+}
+
+#comments-list {
+  /* margin-top: 20px; */
+}
+
+.comment-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.comment-item:last-child {
+  margin-bottom: 0;
+}
+
+/* You can style individual comments further if needed */

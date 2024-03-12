@@ -1,0 +1,36 @@
+.comment {
+  margin-bottom: 20px;
+}
+
+.edit-textarea,
+.reply-textarea {
+  width: calc(100% - 40px);
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.reply-button,
+#save-edit {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3897f0;
+  color: white;
+  cursor: pointer;
+}
+
+.reply-button:hover,
+#save-edit:hover {
+  background-color: #2684f0;
+}
+
+.nested-replies {
+  margin-top: 10px;
+  padding-left: 20px;
+  border-left: 1px solid #ccc;
+}
+
+/* You can add further styling as needed */
