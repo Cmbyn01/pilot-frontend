@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import '../css/Home.css'; // Import the CSS file
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -19,7 +19,7 @@ const Content = () => {
           </h1>
           <form
             className="d-flex flex-column w-75 justify-content-end align-items-end"
-            action="{% url 'allcourses'%}" // Replace with the appropriate URL
+            action="/api/courses" // Replace with the appropriate URL
             method="GET"
             id="search_form"
           >
@@ -48,12 +48,51 @@ const Content = () => {
           </form>
         </div>
         <div className="w-50">
-      <img src={homeImage} alt="image" className="w-75" />
-    </div>
+          <img src={homeImage} alt="image" className="w-75" />
+        </div>
       </main>
 
       <section className="p-5 pt-2 d-flex gap-5 justify-content-center flex-wrap">
-        
+        <div
+          className="d-flex justify-content-center gap-3 align-items-center p-3 rounded-3"
+          style={{ width: '280px', backgroundColor: '#fef6e0' }}
+        >
+          <i className="fa-solid fa-laptop fs-1" style={{ color: '#f7c32e' }}></i>
+          <div>
+            <h3 className="m-0">10K+</h3>
+            <h4 className="m-0">Online Courses</h4>
+          </div>
+        </div>
+        <div
+          className="d-flex justify-content-center gap-3 align-items-center p-3 rounded-3"
+          style={{ width: '280px', backgroundColor: '#e8ebed' }}
+        >
+          <i className="fa-solid fa-user fs-1" style={{ color: '#1d3b53' }}></i>
+          <div>
+            <h3 className="m-0">200+</h3>
+            <h4 className="m-0">Expert Tutors</h4>
+          </div>
+        </div>
+        <div
+          className="d-flex justify-content-center gap-3 align-items-center p-3 rounded-3"
+          style={{ width: '280px', backgroundColor: '#f0ecf9' }}
+        >
+          <i className="fas fa-user-graduate fs-1" style={{ color: '#6f42c1' }}></i>
+          <div>
+            <h3 className="m-0">6K+</h3>
+            <h4 className="m-0">Students</h4>
+          </div>
+        </div>
+        <div
+          className="d-flex justify-content-center gap-3 align-items-center p-3 rounded-3"
+          style={{ width: '280px', backgroundColor: '#e7f6f8' }}
+        >
+          <i className="fa-solid fa-circle-check fs-1" style={{ color: '#17a2b8' }}></i>
+          <div>
+            <h3 className="m-0">5K+</h3>
+            <h4 className="m-0">Certified Courses</h4>
+          </div>
+        </div>
       </section>
 
       <section className="p-5 mb-4">

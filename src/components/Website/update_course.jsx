@@ -46,10 +46,10 @@ class UpdateCourseForm extends React.Component {
             });
 
             if (response.ok) {
-                // Course updated successfully, handle the response accordingly
+                
                 console.log('Course updated successfully');
             } else {
-                // Handle the error response
+                
                 console.error('Failed to update course');
             }
         } catch (error) {
