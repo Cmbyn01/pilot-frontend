@@ -1,0 +1,76 @@
+/* VideoPlayer.css */
+
+/* VideoPlayer container */
+.VideoPlayer {
+    display: flex;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    background-color: #f0f0f0;
+    padding: 20px;
+    width: 250px;
+    order: 2; /* Specify the order */
+  }
+  
+  .sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .sidebar button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Content styles */
+  .content {
+    padding: 20px;
+    flex: 1; /* Allow content area to grow and take remaining space */
+  }
+  
+  .content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Responsive layout */
+  @media screen and (max-width: 768px) {
+    .VideoPlayer {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      order: 1; /* Adjust order for mobile layout */
+    }
+  
+    .sidebar h2 {
+      font-size: 16px;
+    }
+  
+    .content {
+      padding: 10px;
+    }
+  }

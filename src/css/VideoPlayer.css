@@ -1,32 +1,77 @@
 /* VideoPlayer.css */
+
+/* VideoPlayer container */
+.VideoPlayer {
+  display: flex;
+}
+
+/* Sidebar styles */
 .sidebar {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    padding-top: 20px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 250px;
+  
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar button {
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.sidebar button:hover {
+  background-color: lightcoral;
+}
+
+/* Content styles */
+.content {
+  padding: 20px;
+  flex: 1; /* Allow content area to grow and take remaining space */
+}
+
+.content h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Responsive layout */
+@media screen and (max-width: 768px) {
+  .VideoPlayer {
+    flex-direction: column;
   }
-  
-  .sidebar a {
-    padding: 10px 15px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
+
+  .sidebar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    order: 1; /* Adjust order for mobile layout */
   }
-  
-  .sidebar a:hover {
-    background-color: #ddd;
-    color: black;
+
+  .sidebar h2 {
+    font-size: 40px;
   }
-  
-  .video-container {
-    margin-left: 250px; /* Adjust the margin based on your sidebar width */
-    padding: 20px; /* Adjust padding as needed */
+
+  .content {
+    padding: 10px;
   }
-  
-  /* Additional styles for the video player can be added here */
-  
+}

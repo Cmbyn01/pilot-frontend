@@ -5,7 +5,7 @@
 #comment-container {
   width: 100%;
   max-width: 600px;
-  /* margin: auto; */
+  margin: auto;
   padding: 20px;
   /* max-height: 500px; */
   overflow-y: auto;
@@ -16,12 +16,12 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 #add-comment-btn {
-  width: 100px;
-  padding: 10px;
+  width: 300px;
+  padding: 10px 10py;
   background-color: #3897f0;
   color: white;
   border: none;
