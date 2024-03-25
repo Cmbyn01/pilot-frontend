@@ -5,12 +5,15 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 const TeacherDashboard = ({ profile }) => {
+  useEffect(() => {
+    console.log('profile', profile.image_profile);
+  } , [profile]);
   return (
     <div>
       <div className="w-100 d-flex px-5 gap-3 py-5" style={{ backgroundColor: '#1d3b53' }}>
         <div className="rounded rounded-circle">
           <img
-            src="/user/images/profile.png"
+            src={profile.image_profile}
             height="150px"
             width="150px"
             className="rounded rounded-circle"

@@ -7,7 +7,16 @@ const CoursesList = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('/api/courses');
+        const response = await axios.get(`http://127.0.0.1:8000/courses/course/getallcourses/?search_query=${searchQuery}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Token ${localStorage.getItem('token')}`,
+            },
+
+          }
+        ); //change api
+        console.log('Courses:', response.data);
         setCourses(response.data);
       } catch (error) {
         console.error('Error fetching courses:', error);

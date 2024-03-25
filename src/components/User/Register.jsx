@@ -3,8 +3,9 @@ import '../../css/Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import registerImage from "../../images/register.jpg"
-
+import axios from "axios";
 function Register() {
+  axios.defaults.withCredentials = true;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,41 +30,89 @@ function Register() {
   const validateConfirmPassword = () => {
     return formData.password === formData.confirmPassword;
   };
+  const handleOtpCreateSubmit = async (event) => {
+    try {
+      const response = await axios.post(
+        'http://127.0.0.1:8000/user/register/',
+        {
+          username: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          status: formData.status,
+          password1: formData.password,
+          password2: formData.confirmPassword,
+        }
+      );
+      console.log(response);
+    }
+    catch (error) {
+      console.error('Login error:', error.message);
+    }
 
-  const sendOtp = () => {
-    // Simulate sending OTP (you can implement the actual API call here)
-    // For demonstration, here we'll just log the form data
-    console.log("Sending OTP:", formData);
-    // Simulate OTP sent successfully
+  };
+
+  const sendOtp = async () => {
+    await handleOtpCreateSubmit();
     setOtpSent(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validatePassword()) {
-      setMsg(
-        "Password must contain at least 8 characters, including at least 1 lowercase letter, 1 uppercase letter, and 1 number."
+  
+    try {
+      // Get the session ID from cookies if available
+      let sessionID = '';
+      const cookieString = document.cookie;
+      if (cookieString) {
+        sessionID = cookieString
+          .split('; ')
+          .find(row => row.startsWith('sessionid'))
+          ?.split('=')[1] || '';
+      }
+  
+      axios.defaults.withCredentials = true;
+      const response = await axios.post(
+        'http://127.0.0.1:8000/user/register/',
+        {
+          username: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          status: formData.status,
+          password1: formData.password,
+          password2: formData.confirmPassword,
+          otp: formData.otp,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json'
+      },
+        }
       );
-      return;
+  
+      const data = response.data;
+      console.log(data);
+      if (!response.ok) {
+        throw new Error(data.non_field_errors[0] || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Login error:', error.message);
     }
-    if (!validateConfirmPassword()) {
-      setMsg("Passwords do not match.");
-      return;
-    }
-    
-
+  
     // Submit the form (you can implement the actual form submission logic here)
     console.log("Form Submitted:", formData);
     setMsg(""); // Clear error message
   };
+  
+
 
   return (
     <div className="mx-5 mb-5">
       {msg && <div className="alert alert-danger" role="alert">{msg}</div>}
       <div className="d-flex justify-content-between gap-2 align-items-center my-5">
         <div className="h-75 w-50 d-flex justify-content-center">
-        <img
-            src={registerImage} 
+          <img
+            src={registerImage}
             width="80%"
             height="80%"
             alt="register"
