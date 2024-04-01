@@ -171,7 +171,7 @@ const CommentContainer = ({ videoTime }) => {
         placeholder="Add a comment..." 
       />
       <button id="add-comment-btn" onClick={handleAddTopLevelComment}>Add Comment</button>
-      <div id="comments-list">
+      <div id="comments-list" style={{ maxHeight: '400px', overflowY: 'auto' }}>
       {comments.map(comment => (
         (parseInt(videoTime) >= parseInt(comment.relativeTimeStamp)) && !comment.parent_comment? (
           <div key={comment.id} className="comment-item">

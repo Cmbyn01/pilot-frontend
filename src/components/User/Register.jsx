@@ -50,7 +50,7 @@ function Register() {
       setMsg("Passwords do not match.");
       return;
     }
-    // Validate other form fields if needed
+    
 
     // Submit the form (you can implement the actual form submission logic here)
     console.log("Form Submitted:", formData);

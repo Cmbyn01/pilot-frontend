@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -11,6 +13,8 @@ import VideoPlayer from './components/Website/VideoPlayer';
 import CourseVideoPlayer from './components/Website/courseVideoPlayer';
 import CommentContainer from './components/Website/CommentContainer';
 import Comment from './components/Website/Comment';
+import CourseViewPage from './components/Website/courseviewpage';
+import CourseContent from './components/course_base';
 
 function App() {
   return (
@@ -26,6 +30,8 @@ function App() {
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/videoplayer' element={<VideoPlayer />} />
           <Route path='/coursevideoplayer' element={<CourseVideoPlayer />} />
+          <Route path='/courseviewpage' element={<CourseViewPage />} />
+          <Route path='/coursebase' element={<CourseContent />} />
         </Routes>
         <Footer />
       </div>
