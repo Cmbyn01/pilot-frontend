@@ -20,7 +20,7 @@ const AllCourses = () => {
           }
         ); //change api
         console.log('Courses:', response.data);
-        setCourses(response.data);
+        setCourses(response.data.courses);
       } catch (error) {
         console.error('Error fetching courses:', error);
       }
@@ -71,7 +71,7 @@ const AllCourses = () => {
           <a key={course.id} href={`/course_detail/${course.id}`}>  
             <div className="card border-0 shadow" style={{ width: '18rem' }}>
               <img
-                src={course.image_course.url}
+                src={course.image_course}
                 className="card-img-top"
                 width="100%"
                 height="180px"

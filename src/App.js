@@ -11,6 +11,7 @@ import Analytics from './components/Website/Analytics';
 import ContactUs from './components/Website/Contact';
 import CourseViewPage from './components/Website/courseviewpage';
 import CourseContent from './components/course_base';
+import AllCourses from './components/Website/allcourses';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/courseviewpage' element={<CourseViewPage />} />
           <Route path='/coursebase' element={<CourseContent />} />
+          <Route path='/allcourses' element={<AllCourses />} />
         </Routes>
         <Footer />
       </div>

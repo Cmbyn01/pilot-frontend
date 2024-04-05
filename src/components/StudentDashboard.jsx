@@ -11,7 +11,7 @@ const StudentDashboard = ({ profile, token }) => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch('/api/courses', {    //change api url
+        const response = await fetch('/courses/courses', {    //change api url
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
