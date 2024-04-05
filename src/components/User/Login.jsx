@@ -34,7 +34,10 @@ export default function SignInSide() {
       });
   
       const data = await response.json();
-  
+      if (response.status === 401)
+      {
+        setError(response.message)
+      }
       if (!response.ok) {
         throw new Error(data.non_field_errors[0] || 'Login failed');
       }

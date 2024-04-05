@@ -32,6 +32,9 @@ function Register() {
   };
   const handleOtpCreateSubmit = async (event) => {
     try {
+      axios.defaults.xsrfHeaderName = "X-CSRFToken";
+      axios.defaults.xsrfCookieName = "csrftoken";
+
       const response = await axios.post(
         'http://127.0.0.1:8000/user/register/',
         {
@@ -41,6 +44,14 @@ function Register() {
           status: formData.status,
           password1: formData.password,
           password2: formData.confirmPassword,
+        }
+        ,
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+
+          }
         }
       );
       console.log(response);
@@ -53,7 +64,7 @@ function Register() {
 
   const sendOtp = async () => {
     await handleOtpCreateSubmit();
-    setOtpSent(true);
+    // setOtpSent(true);
   };
 
   const handleSubmit = async (e) => {
@@ -72,7 +83,7 @@ function Register() {
   
       axios.defaults.withCredentials = true;
       const response = await axios.post(
-        'http://127.0.0.1:8000/user/register/',
+        'https://127.0.0.1:8000/user/register/',
         {
           username: formData.name,
           email: formData.email,
@@ -89,12 +100,18 @@ function Register() {
       },
         }
       );
+      // print cokkie sent with respone to server
+      console.log("response", response);
   
       const data = response.data;
       console.log(data);
-      if (!response.ok) {
-        throw new Error(data.non_field_errors[0] || 'Login failed');
+      if(data.success){
+        setMsg("User Registered Successfully");
+        window.location.href = "/login";
       }
+      // if (!response.ok) {
+      //   throw new Error(data.non_field_errors[0] || 'Login failed');
+      // }
     } catch (error) {
       console.error('Login error:', error.message);
     }
