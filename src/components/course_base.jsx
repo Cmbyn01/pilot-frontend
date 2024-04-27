@@ -55,7 +55,8 @@ const CourseContent = () => {
                   be moonlight cordially curiosity.
                 </p>
               </div>
-              <div className="tab-pane fade" id="tabs-text-3" role="tabpanel" aria-labelledby="tabs-text-3-tab">
+              <div className="tab-pane fade" id="tab
+              s-text-3" role="tabpanel" aria-labelledby="tabs-text-3-tab">
                 <p>
                   Exercitation photo booth stumptown tote bag Banksy, elit small
                   batch freegan sed. Craft beer elit seitan exercitation, photo

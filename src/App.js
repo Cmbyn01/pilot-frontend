@@ -11,6 +11,11 @@ import Analytics from './components/Website/Analytics';
 import ContactUs from './components/Website/Contact';
 import CourseViewPage from './components/Website/courseviewpage';
 import CourseContent from './components/course_base';
+import UserProfile from './components/User/UserProfile';
+import UpdateProfile from './components/User/UpdateProfile';
+import CreateCourseForm from './components/Website/create_course';
+import AllCourses from './components/Website/allcourses';
+import UserDetails from './components/Website/make_teacher';
 
 function App() {
   return (
@@ -26,6 +31,11 @@ function App() {
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/courseviewpage' element={<CourseViewPage />} />
           <Route path='/coursebase' element={<CourseContent />} />
+          <Route path='/profile' element={<UserProfile />} />
+          <Route path='/update_profile' element={<UpdateProfile />} />
+          <Route path='/create_course' element={<CreateCourseForm />} />
+          <Route path='/allcourses' element={<AllCourses />} />
+          <Route path='/make_teacher' element={<UserDetails />} />
         </Routes>
         <Footer />
       </div>

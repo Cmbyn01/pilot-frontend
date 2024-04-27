@@ -21,8 +21,8 @@ const AllCourses = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Redirect or perform other actions with the searchQuery
-    console.log(`Redirect to: /allcourses?search_query=${searchQuery}`);
+   // Redirect to the search results page
+   window.location.href = `/allcourses?search_query=${searchQuery}`;
   };
 
   return (
