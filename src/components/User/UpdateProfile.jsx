@@ -3,10 +3,27 @@ import { useParams } from 'react-router-dom';
 import CKEditor from 'ckeditor4-react'; 
 
 const UpdateProfile = () => {
-  const { id } = useParams(); // Assuming you have the user's ID from the URL
+  const { id } = useParams(); 
   const [profile, setProfile] = useState({
     name: '',
-    // Add other profile properties
+    image_profile: null,
+    shortBio: '',
+    detail: '',
+    github: '',
+    youtube: '',
+    twitter: '',
+    facebook: '',
+    instagram: '',
+    linkedin: '',
+    department: '',
+    date_of_birth: '',
+    qualification: '',
+    bio: '',
+    research_interests: '',
+    location: '',
+    website: '',
+    employees: 0,
+    founded_year: '',
   });
 
   const [formData, setFormData] = useState({
@@ -43,6 +60,7 @@ const UpdateProfile = () => {
         setProfile(data);
       } catch (error) {
         console.error('Error fetching profile:', error.message);
+        
       }
     };
   
@@ -120,13 +138,13 @@ const UpdateProfile = () => {
           />
         </div>
         {/* Add other form fields */}
-        <div className="form-group my-2">
+        {/* <div className="form-group my-2">
           <label htmlFor="detail">Detail:</label>
           <CKEditor
             data={formData.detail}
             onChange={handleEditorChange}
           />
-        </div>
+        </div> */}
         {/* Add other form fields */}
         <button type="submit" className="btn btn-primary my-2">
           Submit

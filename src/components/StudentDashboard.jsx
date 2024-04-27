@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
- 
 const StudentDashboard = ({ profile, token }) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ const StudentDashboard = ({ profile, token }) => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch('/courses/courses', {    //change api url
+        const response = await fetch('/api/courses', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -68,14 +68,14 @@ const StudentDashboard = ({ profile, token }) => {
               <div className="card-body">
                 <ul className="list-unstyled">
                   <li>
-                    <a className="text-white text-decoration-none d-block w-100" href="#">
+                    <Link to="/profile" className="text-white text-decoration-none d-block w-100">
                       Profile
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="text-white text-decoration-none" href="#">
+                    <Link to="/update_profile" className="text-white text-decoration-none d-block w-100">
                       Update Profile
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -144,6 +144,40 @@ const StudentDashboard = ({ profile, token }) => {
                 ))}
               </div>
             </div>
+
+            {/* Additional Course Section */}
+            <div className="rounded rounded-2 p-2 d-flex justify-content-between align-items-center" style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px' }}>
+              <div className="d-flex gap-2">
+                <img src="{% static '/images/course/02.jpg' %}" width="100px" />
+                <div className="d-flex align-items-center">
+                  <h3>Photoshop Advance</h3>
+                </div>
+              </div>
+              <div className="w-25">
+                <h6 className="text-success">Progress</h6>
+                <div className="progress" style={{ height: '5px' }}>
+                  <div
+                    className="progress-bar bg-success"
+                    role="progressbar"
+                    style={{ width: '100%', height: '5px' }}
+                    aria-valuenow="100"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <div className="d-flex justify-content-end">
+                  <p className="m-0 text-success">100%</p>
+                </div>
+              </div>
+              <div className="mx-5">
+                <button className="btn btn-success">
+                  <i className="fa-solid fa-check"></i> Complete
+                </button>
+                <button className="btn btn-outline-danger">
+                  <i className="fa-solid fa-arrow-rotate-right"></i> Restart
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -152,4 +186,3 @@ const StudentDashboard = ({ profile, token }) => {
 };
 
 export default StudentDashboard;
-

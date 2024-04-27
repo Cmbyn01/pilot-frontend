@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-
 function UserDetails({ profiles }) {
     const [searchTerm, setSearchTerm] = useState('');
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -16,8 +17,28 @@ function UserDetails({ profiles }) {
         profile.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const makeTeacher = (profileId) => {
-        // Implement functionality to make user a teacher
+    const makeTeacher = async (profileId) => {
+        try {
+            const response = await fetch(`/api/make_teacher/${profileId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to make user a teacher');
+            }
+
+            // Handle success
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000); // Hide success message after 3 seconds
+        } catch (error) {
+            console.error('Error making user a teacher:', error.message);
+            // Handle error
+            setShowError(true);
+            setTimeout(() => setShowError(false), 3000); // Hide error message after 3 seconds
+        }
     };
 
     return (
@@ -61,7 +82,7 @@ function UserDetails({ profiles }) {
                                 <td>{profile.email}</td>
                                 <td>{profile.phone}</td>
                                 <td>
-                                    <a href={`/profile/${profile.id}`} className="btn btn-primary btn-sm">View Full Profile</a>
+                                    <Link to={`/profile/${profile.id}`} className="btn btn-primary btn-sm">View Full Profile</Link>
                                     {!profile.user.is_staff && (
                                         <button
                                             onClick={() => makeTeacher(profile.id)}
@@ -76,6 +97,18 @@ function UserDetails({ profiles }) {
                     </tbody>
                 </table>
             </div>
+
+            {showSuccess && (
+                <div className="alert alert-success" role="alert">
+                    User is now a teacher
+                </div>
+            )}
+
+            {showError && (
+                <div className="alert alert-danger" role="alert">
+                    Failed to make user a teacher
+                </div>
+            )}
         </div>
     );
 }

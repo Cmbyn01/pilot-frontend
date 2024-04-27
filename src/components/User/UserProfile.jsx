@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -41,10 +41,47 @@ const UserProfile = () => {
                     />
                   </div>
                   <div className="col-md-8">
-                    <h3>{profile.name}</h3>
+                  <h3>{profile.name}</h3>
                     {/* Add conditionals for status and social links */}
+                    {profile.status === 'Student' && <h5>Student</h5>}
+                    {profile.status === 'Teacher' && <h5>Teacher</h5>}
+                    {profile.status === 'Organization' && <h5>Organization</h5>}
+
                     <p>{profile.shortBio}</p>
-                    {/* Add conditional rendering for social links */}
+                  <hr />
+                  <div className="social-links">
+                    {profile.github && (
+                      <a href={profile.github} target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-github"></i>
+                      </a>
+                    )}
+                    {profile.youtube && (
+                      <a href={profile.youtube} target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-youtube"></i>
+                      </a>
+                    )}
+                    {profile.twitter && (
+                      <a href={profile.twitter} target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                    )}
+                    {profile.facebook && (
+                      <a href={profile.facebook} target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-facebook"></i>
+                      </a>
+                    )}
+                    {profile.instagram && (
+                      <a href={profile.instagram} target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-instagram"></i>
+                      </a>
+                    )}
+                    {profile.linkedin && (
+                      <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-linkedin"></i>
+                      </a>
+                    )}
+                  </div>
+
                     <hr />
                     {profile.detail && <div dangerouslySetInnerHTML={{ __html: profile.detail }} />}
                     {/* Add conditional rendering for specific status details */}
@@ -82,13 +119,91 @@ const UserProfile = () => {
                           </p>
                         )}
                         {profile.employees && (
-                          <p>
-                            <strong>Number of Employees:</strong> {profile.employees}
-                          </p>
-                        )}
+                        <div className="container mt-4">
+                          <div className="row">
+                            <div className="col-md-4">
+                              <div className="card">
+                              <img
+                            src={profile.image_profile.url}
+                            className="card-img-top"
+                            alt={profile.name} // You can use profile.name or any appropriate text
+                              />
+
+                                <div className="card-body">
+                                  <h5 className="card-title">
+                                    {profile.name}
+                                  </h5>
+                                  <p className="card-text">{profile.description}</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-md-8">
+                              <h2>{profile.name}'s Profile</h2>
+                              <hr />
+                              <h4>General Information</h4>
+                              <table className="table table-bordered table-striped">
+                                <tbody>
+                                  <tr>
+                                    <th>Full Name</th>
+                                    <td>{profile.name}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Email</th>
+                                    <td>{profile.email}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Phone Number</th>
+                                    <td>{profile.phone}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Status</th>
+                                    <td>{profile.status}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Short Bio</th>
+                                    <td>{profile.shortBio}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <hr />
+                              <h4>Organization Details</h4>
+                              <table className="table table-bordered table-striped">
+                                <tbody>
+                                  <tr>
+                                    <th>Name</th>
+                                    <td>{profile.name}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Description</th>
+                                    <td>{profile.description}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Location</th>
+                                    <td>{profile.location}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Website</th>
+                                    <td>{profile.website}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Founded Year</th>
+                                    <td>{profile.founded_year}</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Number of Employees</th>
+                                    <td>{profile.employees}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       </>
                     )}
-                    
+                      <div className="card-footer">
+                        <Link to="/update_profile" className="btn btn-primary btn-block">Update Profile</Link>
+                      </div>
                   </div>
                 </div>
               </div>
