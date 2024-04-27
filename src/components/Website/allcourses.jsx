@@ -6,11 +6,21 @@ const AllCourses = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
+    console.log('Search query:', searchQuery);
     
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(`/api/courses/?search_query=${searchQuery}`); //change api
-        setCourses(response.data);
+        const response = await axios.get(`http://127.0.0.1:8000/courses/course/getallcourses/?search_query=${searchQuery}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Token ${localStorage.getItem('token')}`,
+            },
+
+          }
+        ); //change api
+        console.log('Courses:', response.data);
+        setCourses(response.data.courses);
       } catch (error) {
         console.error('Error fetching courses:', error);
       }
@@ -61,7 +71,7 @@ const AllCourses = () => {
           <a key={course.id} href={`/course_detail/${course.id}`}>  
             <div className="card border-0 shadow" style={{ width: '18rem' }}>
               <img
-                src={course.image_course.url}
+                src={course.image_course}
                 className="card-img-top"
                 width="100%"
                 height="180px"

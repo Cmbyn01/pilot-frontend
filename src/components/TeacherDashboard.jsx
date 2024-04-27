@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -34,14 +35,14 @@ const TeacherDashboard = ({ profile }) => {
               <div className="card-body">
                 <ul className="list-unstyled">
                   <li>
-                    <a className="text-white text-decoration-none d-block w-100" href="#">
-                      Profile
-                    </a>
+                  <Link to="/profile" className="text-white text-decoration-none d-block w-100">
+                    Profile
+                  </Link>
                   </li>
                   <li>
-                    <a className="text-white text-decoration-none" href="#">
-                      Update Profile
-                    </a>
+                  <Link to="/update_profile" className="text-white text-decoration-none d-block w-100">
+                    Update Profile
+                  </Link>
                   </li>
                 </ul>
               </div>
@@ -54,24 +55,19 @@ const TeacherDashboard = ({ profile }) => {
               <div className="card-body">
                 <ul className="list-unstyled">
                   <li>
-                    <a className="text-white text-decoration-none" href="#">
-                      Create Courses
-                    </a>
+                  <Link to="/create_course" className="text-white text-decoration-none d-block w-100">
+                    Create Courses
+                  </Link>
                   </li>
                   <li>
-                    <a className="text-white text-decoration-none" href="#">
-                      My Courses
-                    </a>
+                  <Link to="/allcourses" className="text-white text-decoration-none d-block w-100">
+                    My Course
+                  </Link>
                   </li>
                   <li>
-                    <a className="text-white text-decoration-none" href="#">
-                      Analytics
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-white text-decoration-none" href="#">
-                      Course Progress
-                    </a>
+                  <Link to="/analytics" className="text-white text-decoration-none d-block w-100">
+                    Analytics
+                  </Link>
                   </li>
                 </ul>
               </div>

@@ -17,35 +17,45 @@ const defaultTheme = createTheme();
 
 export default function SignInSide() {
   const [error, setError] = useState(null);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-
+  
     try {
-      const response = await fetch('/api/login', { //change api url
+      const response = await fetch('http://127.0.0.1:8000/user/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: formData.get('email'),
+          email: formData.get('email'), // Assuming email is used as the username
           password: formData.get('password'),
         }),
       });
-
-      if (!response.ok) {
-        throw new Error('Login failed');
+  
+      const data = await response.json();
+      if (response.status === 401)
+      {
+        setError(response.message)
       }
-
+      if (!response.ok) {
+        throw new Error(data.non_field_errors[0] || 'Login failed');
+      }
+  
       // Successful login, you may want to handle the response accordingly
-      window.location.href = '/';
+      console.log('Login response:', data);
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.setItem('token', data.key);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      window.location.href = '/'; // Redirect to the desired page after successful login
       console.log('Login successful');
     } catch (error) {
       console.error('Login error:', error.message);
       setError('Invalid email or password');
     }
   };
+  
 
   return (
     <ThemeProvider theme={defaultTheme}>

@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -24,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/" element={<Content />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login  />} />
           <Route path='/register' element={<Register />} />
           <Route path='/analytics' element={<Analytics />} />
           <Route path='/contact' element={<ContactUs />} />

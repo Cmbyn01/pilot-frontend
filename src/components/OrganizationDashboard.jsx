@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -15,14 +16,14 @@ const OrganizationDashboard = ({ profile }) => {
             <div className="card-body">
               <ul className="list-unstyled">
                 <li>
-                  <a className="text-white text-decoration-none d-block w-100" href="#">
+                <Link to="profile" className="text-white text-decoration-none d-block w-100">
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="text-white text-decoration-none" href="#">
+                <Link to="/update_profile" className="text-white text-decoration-none d-block w-100">
                     Update Profile
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -35,9 +36,9 @@ const OrganizationDashboard = ({ profile }) => {
             <div className="card-body">
               <ul className="list-unstyled">
                 <li>
-                  <a className="text-white text-decoration-none" href="#">
+                <Link to="/make_teacher" className="text-white text-decoration-none d-block w-100">
                     Assign Teacher
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="text-white text-decoration-none" href="#">
