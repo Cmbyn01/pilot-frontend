@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
+import axios from 'axios';
+ 
 const UpdateProfile = () => {
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
@@ -20,21 +21,13 @@ const UpdateProfile = () => {
   });
 
   useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const response = await fetch(`/api/profiles/${id}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch profile data');
-        }
-        const data = await response.json();
-        setProfile(data);
-        setFormData({ ...formData, ...data });
-      } catch (error) {
-        console.error('Error fetching profile:', error.message);
-      }
-    };
+    
+    const data1 = localStorage.getItem("user")
+    const data = JSON.parse(data1)
 
-    fetchProfileData();
+    setProfile(data);
+    setFormData({ ...formData, ...data });
+    //fetchProfileData();
   }, [id]);
 
   const handleInputChange = (e) => {
@@ -45,26 +38,62 @@ const UpdateProfile = () => {
   const handleFileChange = (e) => {
     setFormData({ ...formData, profileImage: e.target.files[0] });
   };
+//   function getCookie(name) {
+//     var cookieValue = null;
+//     if (document.cookie && document.cookie !== '') {
+//         var cookies = document.cookie.split(';');
+//         for (var i = 0; i < cookies.length; i++) {
+//             var cookie =   trim(cookies[i]);
+//             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//                 break;
+//             }
+//         }
+//     }
+    
+//     return cookieValue;
+// }
+let csrfcookie = function() {  // for django csrf protection
+  let cookieValue = null,
+      name = "csrftoken";
+  if (document.cookie && document.cookie !== "") {
+      let cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+          let cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) == (name + "=")) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+    
       const formDataToSend = new FormData();
       for (const key in formData) {
         formDataToSend.append(key, formData[key]);
       }
-      const response = await fetch(`/api/profiles/${id}`, {
-        method: 'PUT',
-        body: formDataToSend,
-      });
-      if (!response.ok) {
-        throw new Error('Failed to update profile');
-      }
-      window.location.href = `/user_profile/${id}`;
-    } catch (error) {
-      console.error('Error updating profile:', error.message);
-    }
-  };
+      const user_token = localStorage.getItem('token');
+      const myHeaders = new Headers(); 
+      myHeaders.append("Authorization", "Bearer " + user_token);
+      myHeaders.append("Cookie", "csrftoken=" + csrfcookie());
+      myHeaders.append("X-CSRFToken", csrfcookie());
+
+      const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      redirect: "follow"
+      };
+
+      fetch("http://127.0.0.1:8000/user/update_profile/", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+      };
+  
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>

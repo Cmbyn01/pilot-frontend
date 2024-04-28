@@ -23,6 +23,7 @@ import UserDetails from './components/Website/make_teacher';
 import DeleteCourse from './components/Website/delete_course';
 import CourseDetails from './components/Website/course_detail';
 
+
 function App() {
   return (
     <Router>
@@ -48,6 +49,7 @@ function App() {
           <Route path='/make_teacher' element={<UserDetails />} />
           <Route path='/delete_course' element={<DeleteCourse />} />
           <Route path='/course_detail' element={<CourseDetails />} />
+
         </Routes>
         <Footer />
       </div>
