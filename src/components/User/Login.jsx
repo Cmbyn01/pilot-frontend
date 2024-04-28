@@ -46,7 +46,7 @@ export default function SignInSide() {
       console.log('Login response:', data);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      localStorage.setItem('token', data.key);
+      localStorage.setItem('token', data.jwt);
       localStorage.setItem('user', JSON.stringify(data.user));
       window.location.href = '/'; // Redirect to the desired page after successful login
       console.log('Login successful');

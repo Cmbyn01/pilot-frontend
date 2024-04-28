@@ -7,14 +7,17 @@ import '../css/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const Dashboard = ({ token }) => {
+const Dashboard = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const token = localStorage.getItem('token');
+  console.log("token",token);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await fetch('/api/user/profile', { //change api
+        const response = await fetch('http://127.0.0.1:8000/user/get_profile', { //change api
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -52,7 +55,7 @@ const Dashboard = ({ token }) => {
     case 'student':
       DashboardComponent = StudentDashboard;
       break;
-    case 'teacher':
+    case 'Teacher':
       DashboardComponent = TeacherDashboard;
       break;
     case 'organization':

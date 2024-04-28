@@ -7,10 +7,10 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 const CreateCourseForm = () => {
   const [courseData, setCourseData] = useState({
     name: '',
-    description: '',
+    desc: '',
     image: null,
     price: '',
-    smallDescription: '',
+    small_desc: '',
     learned: '',
     tags: ''
   });
@@ -30,26 +30,28 @@ const CreateCourseForm = () => {
     try {
       const formData = new FormData();
       formData.append('name', courseData.name);
-      formData.append('description', courseData.description);
+      formData.append('desc', courseData.desc);
       formData.append('image', courseData.image);
       formData.append('price', courseData.price);
-      formData.append('smallDescription', courseData.smallDescription);
+      formData.append('small_desc', courseData.small_desc);
       formData.append('learned', courseData.learned);
       formData.append('tags', courseData.tags);
 
-      await axios.post('/api/create-course', formData, {
+      await axios.post('http://127.0.0.1:8000/courses/course/create_course/', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'X-CSRFToken': 'csrftoken'
         }
       });
 
       // Reset form data after submission
       setCourseData({
         name: '',
-        description: '',
+        desc: '',
         image: null,
         price: '',
-        smallDescription: '',
+        small_desc: '',
         learned: '',
         tags: ''
       });
@@ -75,12 +77,12 @@ const CreateCourseForm = () => {
           />
         </div>
         <div className="form-group my-2">
-          <label htmlFor="description">Description</label>
+          <label htmlFor="desc">Description</label>
           <textarea
             className="form-control border-dark"
-            id="description"
-            name="description"
-            value={courseData.description}
+            id="desc"
+            name="desc"
+            value={courseData.desc}
             onChange={handleInputChange}
             rows="3"
             required
@@ -112,13 +114,13 @@ const CreateCourseForm = () => {
           />
         </div>
         <div className="form-group my-2">
-          <label htmlFor="small_description">Short Description</label>
+          <label htmlFor="small_desc">Short Description</label>
           <input
             type="text"
             className="form-control border-dark"
-            id="small_description"
-            name="smallDescription"
-            value={courseData.smallDescription}
+            id="small_desc"
+            name="small_desc"
+            value={courseData.small_desc}
             onChange={handleInputChange}
           />
         </div>
