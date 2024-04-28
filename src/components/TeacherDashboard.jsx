@@ -60,7 +60,7 @@ const TeacherDashboard = ({ profile }) => {
                   </Link>
                   </li>
                   <li>
-                  <Link to="/allcourses" className="text-white text-decoration-none d-block w-100">
+                  <Link to="/courses" className="text-white text-decoration-none d-block w-100">
                     My Course
                   </Link>
                   </li>

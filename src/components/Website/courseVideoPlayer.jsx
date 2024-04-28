@@ -13,19 +13,20 @@ const CourseContent = () => {
   return (
     <div className="d-flex px-1 mt-2" style={{ height: '100vh' }}>
       <div className="w-75 overflow-y-scroll" style={{ height: '100hv' }}>
-        <div className="video w-100 h-75">
-          <VideoPlayer /> {/* Render the VideoPlayer component */}
-        </div>
+        
         <div className="card border-0">
           <div className="card-body p-0">
             <div className="tab-content" id="tabcontent1">
               <div className="tab-pane fade show active" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
                 <div className="px-2">
                   <div className='py-3'>
-                  <div className="p-2 position-absolute top-0">
-                        <h3 className="text-danger">Course Content</h3>
+                  <div className="p-2 position-absolute top-0 px-3">
+                        <h2 className="text-danger">Course Content</h2>
                   </div>
-                  <div className="mt-5 border-top border-dark">
+                  <div className="video w-100 h-75 py-5">
+          <VideoPlayer /> 
+        </div>
+                  <div className=" border-top border-dark">
           <div className="accordion" id="accordionExample">
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingOne">
@@ -77,31 +78,32 @@ const CourseContent = () => {
                 </div>
               </div>
             </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header" id="headingThree">
-                <button className="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Module 3: Data structure & Algorithm
-                </button>
-              </h2>
-              <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div className="accordion-body p-0">
-                  <ul className="list-unstyled m-0">
-                    <li className="w-100 border border-1 border-secondary">
-                      <a href="#" className="text-decoration-none p-3 d-flex text-dark fw-bold w-100 flex-column" style={{ backgroundColor: 'rgb(238, 250, 255)' }}>
-                        Arrays Introduction
-                        <p className="m-0 fw-normal text-danger">23 min</p>
-                      </a>
-                    </li>
-                    <li className="w-100 border border-1 border-secondary">
-                      <a href="#" className="text-decoration-none p-3 d-flex text-dark fw-bold w-100 flex-column" style={{ backgroundColor: 'rgb(238, 250, 255)' }}>
-                        Arrays Introduction
-                        <p className="m-0 fw-normal text-danger">23 min</p>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <div className="accordion-item mt-3">
+  <h2 className="accordion-header" id="headingThree">
+    <button className="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      Module 3: Data structure & Algorithm
+    </button>
+  </h2>
+  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+    <div className="accordion-body p-0">
+      <ul className="list-unstyled m-0">
+        <li className="w-100 border border-1 border-secondary">
+          <a href="#" className="text-decoration-none p-3 d-flex text-dark fw-bold w-100 flex-column" style={{ backgroundColor: 'rgb(238, 250, 255)' }}>
+            Arrays Introduction
+            <p className="m-0 fw-normal text-danger">23 min</p>
+          </a>
+        </li>
+        <li className="w-100 border border-1 border-secondary">
+          <a href="#" className="text-decoration-none p-3 d-flex text-dark fw-bold w-100 flex-column" style={{ backgroundColor: 'rgb(238, 250, 255)' }}>
+            Arrays Introduction
+            <p className="m-0 fw-normal text-danger">23 min</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
           </div>
         </div>
                   </div>

@@ -22,6 +22,12 @@ import CreateCourseForm from './components/Website/create_course';
 import UserDetails from './components/Website/make_teacher';
 import DeleteCourse from './components/Website/delete_course';
 import CourseDetails from './components/Website/course_detail';
+import CoursesList from './components/Website/courses';
+import UpdateCourseForm from './components/Website/update_course';
+import CreateModule from './components/Website/create_module';
+import DeleteModule from './components/Website/delete_moule';
+import QuizModal from './components/Website/QuizModal';
+import TeacherDashboard from './components/TeacherDashboard';
 
 
 function App() {
@@ -48,8 +54,15 @@ function App() {
           <Route path='/create_course' element={<CreateCourseForm />} />
           <Route path='/make_teacher' element={<UserDetails />} />
           <Route path='/delete_course' element={<DeleteCourse />} />
-          <Route path='/course_detail' element={<CourseDetails />} />
 
+          <Route path='/course_detail/:id' element={<CourseDetails />} />
+          <Route path='/courses' element={<CoursesList />} />
+          <Route path='/update_course/:id' element={<UpdateCourseForm />} />
+          <Route path='/create_module' element={<CreateModule />} />
+          <Route path='/delete_course/:id' element={<DeleteCourse />} />
+          <Route path='/delete_module/:id' element={<DeleteModule />} />
+          <Route path='/quiz' element={<QuizModal />} />
+          <Route path='/teacher_dashboard' element={<TeacherDashboard />} />
         </Routes>
         <Footer />
       </div>
