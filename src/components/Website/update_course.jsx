@@ -38,6 +38,7 @@ class UpdateCourseForm extends React.Component {
         formData.append('small_description', this.state.small_description);
         formData.append('learned', this.state.learned);
         formData.append('tags', this.state.tags);
+        //add video upload link to uploading page
 
         try {
             const response = await fetch(`/api/update_course/${this.props.course.id}`, {

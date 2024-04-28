@@ -1,155 +1,250 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import CKEditor from 'ckeditor4-react'; 
 
 const UpdateProfile = () => {
-  const { id } = useParams(); 
-  const [profile, setProfile] = useState({
-    name: '',
-    image_profile: null,
-    shortBio: '',
-    detail: '',
-    github: '',
-    youtube: '',
-    twitter: '',
-    facebook: '',
-    instagram: '',
-    linkedin: '',
-    department: '',
-    date_of_birth: '',
-    qualification: '',
-    bio: '',
-    research_interests: '',
-    location: '',
-    website: '',
-    employees: 0,
-    founded_year: '',
-  });
-
+  const { id } = useParams();
+  const [profile, setProfile] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
-    image_profile: null,
     shortBio: '',
-    detail: '',
-    github: '',
-    youtube: '',
-    twitter: '',
-    facebook: '',
-    instagram: '',
-    linkedin: '',
     department: '',
-    date_of_birth: '',
+    dateOfBirth: '',
+    grade: '',
     qualification: '',
-    bio: '',
-    research_interests: '',
+    researchInterests: '',
     location: '',
     website: '',
-    employees: 0,
-    founded_year: '',
+    foundedYear: '',
+    employees: '',
+    profileImage: null,
   });
 
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await fetch(`/api/profiles/${id}`); //change url
+        const response = await fetch(`/api/profiles/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch profile data');
         }
-  
         const data = await response.json();
         setProfile(data);
+        setFormData({ ...formData, ...data });
       } catch (error) {
         console.error('Error fetching profile:', error.message);
-        
       }
     };
-  
-    // Call the fetchProfileData function
+
     fetchProfileData();
   }, [id]);
-  
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleImageChange = (e) => {
-    setFormData({ ...formData, image_profile: e.target.files[0] });
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, profileImage: e.target.files[0] });
   };
 
-  const handleEditorChange = (event, editor) => {
-    const data = editor.getData();
-    setFormData({ ...formData, detail: data });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Add your form submission logic here
-    console.log('Form submitted:', formData);
-
-    // Clear form data after successful submission
-    setFormData({
-      name: '',
-      image_profile: null,
-      shortBio: '',
-      detail: '',
-      github: '',
-      youtube: '',
-      twitter: '',
-      facebook: '',
-      instagram: '',
-      linkedin: '',
-      department: '',
-      date_of_birth: '',
-      qualification: '',
-      bio: '',
-      research_interests: '',
-      location: '',
-      website: '',
-      employees: 0,
-      founded_year: '',
-    });
+    try {
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
+      const response = await fetch(`/api/profiles/${id}`, {
+        method: 'PUT',
+        body: formDataToSend,
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update profile');
+      }
+      window.location.href = `/user_profile/${id}`;
+    } catch (error) {
+      console.error('Error updating profile:', error.message);
+    }
   };
 
   return (
-    <div>
-      <h1 className="text-danger px-5 py-3">Update Profile</h1>
-      <form method="POST" className="px-5" encType="multipart/form-data" onSubmit={handleSubmit}>
-        {/* Render profile data in the form */}
-        <div className="form-group my-2">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            className="form-control border-dark"
-            placeholder={profile.name}
-            value={formData.name}
-            onChange={handleChange}
-          />
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+      {profile && (
+        <div style={{ width: '50%' }}>
+          <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)' }}>
+            <h2 style={{ marginBottom: '1rem' }}>Update Profile</h2>
+            <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="profileImage">Profile Image</label>
+                <input
+                  type="file"
+                  className="form-control-file"
+                  id="profileImage"
+                  name="profileImage"
+                  onChange={handleFileChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="shortBio">Short Bio</label>
+                <textarea
+                  className="form-control"
+                  id="shortBio"
+                  name="shortBio"
+                  rows="3"
+                  value={formData.shortBio}
+                  onChange={handleInputChange}
+                ></textarea>
+              </div>
+              
+              {/* Render fields based on status */}
+              {profile.status === 'Student' && (
+                <>
+                  <div className="form-group">
+                        <label htmlFor="department">Department</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="department"
+                          name="department"
+                          value={formData.department}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="dateOfBirth">Date of Birth</label>
+                        <input
+                          type="date"
+                          className="form-control"
+                          id="dateOfBirth"
+                          name="dateOfBirth"
+                          value={formData.dateOfBirth}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="grade">Grade</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="grade"
+                          name="grade"
+                          value={formData.grade}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                </>
+              )}
+              {profile.status === 'Organization' && (
+                <>
+                  <div className="form-group">
+                        <label htmlFor="location">Location</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="location"
+                          name="location"
+                          value={formData.location}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="website">Website</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="website"
+                          name="website"
+                          value={formData.website}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="foundedYear">Founded Year</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="foundedYear"
+                          name="foundedYear"
+                          value={formData.foundedYear}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="employees">Number of Employees</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="employees"
+                          name="employees"
+                          value={formData.employees}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                </>
+              )}
+              {profile.status === 'Teacher' && (
+                <>
+                  <div className="form-group">
+                        <label htmlFor="department">Department</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="department"
+                          name="department"
+                          value={formData.department}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="dateOfBirth">Date of Birth</label>
+                        <input
+                          type="date"
+                          className="form-control"
+                          id="dateOfBirth"
+                          name="dateOfBirth"
+                          value={formData.dateOfBirth}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="qualification">Qualification</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="qualification"
+                          name="qualification"
+                          value={formData.qualification}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="researchInterests">Research Interests</label>
+                        <textarea
+                          className="form-control"
+                          id="researchInterests"
+                          name="researchInterests"
+                          rows="3"
+                          value={formData.researchInterests}
+                          onChange={handleInputChange}
+                        ></textarea>
+                      </div>
+                </>
+              )}
+              <button type="submit" className="btn btn-primary">Save Changes</button>
+            </form>
+          </div>
         </div>
-        <div className="form-group my-2">
-          <label htmlFor="image_profile">Profile Image:</label>
-          <input
-            type="file"
-            name="image_profile"
-            className="form-control-file"
-            onChange={handleImageChange}
-          />
-        </div>
-        {/* Add other form fields */}
-        {/* <div className="form-group my-2">
-          <label htmlFor="detail">Detail:</label>
-          <CKEditor
-            data={formData.detail}
-            onChange={handleEditorChange}
-          />
-        </div> */}
-        {/* Add other form fields */}
-        <button type="submit" className="btn btn-primary my-2">
-          Submit
-        </button>
-      </form>
+      )}
     </div>
   );
 };

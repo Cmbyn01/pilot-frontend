@@ -1,7 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -17,6 +15,13 @@ import CommentContainer from './components/Website/CommentContainer';
 import Comment from './components/Website/Comment';
 import CourseViewPage from './components/Website/courseviewpage';
 import CourseContent from './components/course_base';
+import AllCourses from './components/Website/allcourses';
+import UserProfile from './components/User/UserProfile';
+import UpdateProfile from './components/User/UpdateProfile';
+import CreateCourseForm from './components/Website/create_course';
+import UserDetails from './components/Website/make_teacher';
+import DeleteCourse from './components/Website/delete_course';
+import CourseDetails from './components/Website/course_detail';
 
 function App() {
   return (
@@ -32,8 +37,17 @@ function App() {
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/videoplayer' element={<VideoPlayer />} />
           <Route path='/coursevideoplayer' element={<CourseVideoPlayer />} />
-          <Route path='/courseviewpage' element={<CourseViewPage />} />
-          <Route path='/coursebase' element={<CourseContent />} />
+          {/* <Route path='/courseviewpage' element={<CourseViewPage />} /> */}
+          {/* <Route path='/coursebase' element={<CourseContent />} /> */}
+          {/* <Route path='/courseviewpage' element={<CourseViewPage />} /> */}
+          {/* <Route path='/coursebase' element={<CourseContent />} /> */}
+          <Route path='/allcourses' element={<AllCourses />} />
+          <Route path='/profile' element={<UserProfile />} />
+          <Route path='/update_profile' element={<UpdateProfile />} />
+          <Route path='/create_course' element={<CreateCourseForm />} />
+          <Route path='/make_teacher' element={<UserDetails />} />
+          <Route path='/delete_course' element={<DeleteCourse />} />
+          <Route path='/course_detail' element={<CourseDetails />} />
         </Routes>
         <Footer />
       </div>

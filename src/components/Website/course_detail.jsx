@@ -65,7 +65,7 @@ const CourseDetails = ({ course, profile, isAuthenticated, enrollHandler, loginH
         <div className="col-md-8 mt-4">
           {isAuthenticated ? (
             course.enroller_user.includes(profile.id) ? (
-              <a href={`/courseviewpage/${course.id}`} className="btn btn-primary">
+              <a href={`/coursevideoplayer/${course.id}`} className="btn btn-primary">
                 Go to Course
               </a>
             ) : (
@@ -86,7 +86,7 @@ const CourseDetails = ({ course, profile, isAuthenticated, enrollHandler, loginH
             <a href={`/update_course/${course.id}`} className="btn btn-warning">
               Update Course
             </a>
-            <a href="/analytic" className="btn btn-info">
+            <a href="/analytics" className="btn btn-info">
               Analytics
             </a>
             <a href={`/delete_course/${course.id}`} className="btn btn-danger">

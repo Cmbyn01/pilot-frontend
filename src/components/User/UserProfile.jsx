@@ -84,7 +84,6 @@ const UserProfile = () => {
 
                     <hr />
                     {profile.detail && <div dangerouslySetInnerHTML={{ __html: profile.detail }} />}
-                    {/* Add conditional rendering for specific status details */}
                     {profile.status === 'Student' && (
                       <>
                         <p><strong>Department:</strong> {profile.department}</p>
@@ -126,7 +125,7 @@ const UserProfile = () => {
                               <img
                             src={profile.image_profile.url}
                             className="card-img-top"
-                            alt={profile.name} // You can use profile.name or any appropriate text
+                            alt={profile.name} 
                               />
 
                                 <div className="card-body">

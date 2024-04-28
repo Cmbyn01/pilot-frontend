@@ -69,6 +69,11 @@ const TeacherDashboard = ({ profile }) => {
                     Analytics
                   </Link>
                   </li>
+                  <li>
+                  <Link to="/delete_course" className="text-white text-decoration-none d-block w-100">
+                    Delete Course
+                  </Link>
+                  </li>
                 </ul>
               </div>
             </div>
