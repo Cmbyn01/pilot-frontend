@@ -8,14 +8,22 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        // const response = await fetch(`/api/profiles/${id}`);  //add api url
-        // if (!response.ok) {
-        //   throw new Error('Failed to fetch profile data');
-        // }
-        // const data = await response.json();
-        // setProfile(data);
-        const data1 = localStorage.getItem("user")
-        const data = JSON.parse(data1)
+        var user_token = localStorage.getItem('token');
+        const response = await fetch(`http://127.0.0.1:8000/user/get_profile/`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${user_token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+        );  //add api url
+        if (!response.ok) {
+          throw new Error('Failed to fetch profile data');
+        }
+        const data = await response.json();
+        setProfile(data);
+        // const data = localStorage.getItem("user")
+        // const data = JSON.parse(data1)
 
         setProfile(data);
 
@@ -92,11 +100,11 @@ const UserProfile = () => {
                       <>
                         <p><strong>Department:</strong> {profile.department}</p>
                         <p><strong>Short Bio:</strong> {profile.shortBio}</p>
-                        
+
                         <p><strong>Facebook:</strong> {profile.facebook}</p>
-                        
+
                         <p><strong>Instagram:</strong> {profile.date_of_birth}</p>
-                        
+
                         <p><strong>Email:</strong> {profile.email}</p>
                       </>
                     )}
@@ -104,11 +112,11 @@ const UserProfile = () => {
                       <>
                         <p><strong>Department:</strong> {profile.department}</p>
                         <p><strong>Short Bio:</strong> {profile.shortBio}</p>
-                        
+
                         <p><strong>Facebook:</strong> {profile.facebook}</p>
-                        
+
                         <p><strong>Instagram:</strong> {profile.date_of_birth}</p>
-                        
+
                         <p><strong>Email:</strong> {profile.email}</p>
                         {profile.qualification && <p><strong>Qualification:</strong> {profile.qualification}</p>}
                         {profile.research_interests && (

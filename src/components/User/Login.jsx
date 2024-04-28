@@ -37,7 +37,7 @@ export default function SignInSide() {
       console.log('Login response:', response);
       const csrfToken = response.headers.get('csrftoken');
       console.log('CSRF token:', csrfToken);
-      if (response.status === 401)
+      if (response.status >= 401)
       {
         setError(response.message)
       }
@@ -53,12 +53,12 @@ export default function SignInSide() {
       localStorage.setItem('token', data.jwt);
       localStorage.setItem('user', JSON.stringify(data.user));
       console.log("REsponse ",response)
-      // window.location.href = '/'; // Redirect to the desired page after successful login
+      window.location.href = '/'; // Redirect to the desired page after successful login
       console.log('token:', data.key);
       console.log('user:', data.user)
       console.log('Login successful');
     } catch (error) {
-      console.error('Login error:', error.message);
+      console.error('Login error:', error);
       setError('Invalid email or password');
     }
   };

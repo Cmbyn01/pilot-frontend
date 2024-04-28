@@ -1,5 +1,5 @@
 import React from 'react';
-import profileImage from '../images/profile.png'
+import image_profile from '../images/profile.png'
 import '../css/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -10,7 +10,7 @@ const UserProfile = ({ profile }) => {
       <div className="w-100 d-flex px-5 gap-3 py-5" style={{ backgroundColor: '#1d3b53' }}>
         <div className="rounded rounded-circle">
           <img
-            src={profileImage}
+            src={image_profile}
             height="150px"
             width="150px"
             className="rounded rounded-circle"
