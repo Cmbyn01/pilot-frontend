@@ -32,7 +32,7 @@ const CoursesList = () => {
         {courses.map(course => (
           <div key={course.id} className="col-md-4 mb-4">
             <div className="card">
-              <img src={course.image_course.url} alt={course.name} className="card-img-top" />
+              <img src={course.image_course_course.url} alt={course.name} className="card-img-top" />
               <div className="card-body">
                 <h5 className="card-title">{course.name}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{course.teacher.profile.name}</h6>

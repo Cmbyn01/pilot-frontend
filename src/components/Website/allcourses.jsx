@@ -7,7 +7,7 @@ const AllCourses = () => {
 
   useEffect(() => {
     console.log('Search query:', searchQuery);
-    
+
     const fetchCourses = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/courses/course/getallcourses/?search_query=${searchQuery}`,
@@ -67,11 +67,11 @@ const AllCourses = () => {
 
       <div className="m-5 d-flex flex-wrap justify-content-center gap-3">
         {courses.map((course) => (
- //replace with correct url
-          <a key={course.id} href={`/course_detail/${course.id}`}>  
+          //replace with correct url
+          <a key={course.id} href={`/course_detail/${course.id}`}>
             <div className="card border-0 shadow" style={{ width: '18rem' }}>
               <img
-                src={course.image_course}
+                src={course.image_course_course}
                 className="card-img-top"
                 width="100%"
                 height="180px"

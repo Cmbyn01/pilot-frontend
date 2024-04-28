@@ -24,7 +24,7 @@ const CourseDetails = ({ course, profile, isAuthenticated, enrollHandler, loginH
           <p>Price: ${course.price}</p>
           <p>{course.small_description}</p>
           <hr />
-          <img src={course.image_course.url} className="img-fluid mb-4" alt="Course Image" />
+          <img src={course.image_course_course.url} className="img-fluid mb-4" alt="Course Image" />
           <h3 className="mb-3">Description</h3>
           <div className="lead" dangerouslySetInnerHTML={{ __html: course.description }}></div>
           <h3 className="mb-3">What you'll learn</h3>

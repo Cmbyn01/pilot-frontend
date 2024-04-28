@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { CssOutlined } from '@mui/icons-material';
 
 const StudentDashboard = ({ profile, token }) => {
   const [courses, setCourses] = useState([]);
@@ -11,10 +12,12 @@ const StudentDashboard = ({ profile, token }) => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch('/api/courses', {
+        const user_token = localStorage.getItem('token');
+        console.log('user_token:', user_token)
+        const response = await fetch('http://127.0.0.1:8000/courses/user_enrolled_courses', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${user_token}`,
             'Content-Type': 'application/json',
           },
         });
@@ -24,6 +27,7 @@ const StudentDashboard = ({ profile, token }) => {
         }
 
         const coursesData = await response.json();
+        console.log('Courses:', coursesData);
         setCourses(coursesData);
         setLoading(false);
       } catch (error) {
@@ -44,7 +48,7 @@ const StudentDashboard = ({ profile, token }) => {
       <div className="w-100 d-flex px-5 gap-3 py-5" style={{ backgroundColor: '#1d3b53' }}>
         <div className="rounded rounded-circle">
           <img
-            src={profile.profileImage}
+            src={profile.image_profile}
             height="150px"
             width="150px"
             className="rounded rounded-circle"
@@ -114,7 +118,7 @@ const StudentDashboard = ({ profile, token }) => {
                     }}
                   >
                     <div className="d-flex gap-2">
-                      <img src={course.image} width="100px" alt="Course" />
+                      <img src={course.image_course} width="100px" alt="Course" />
                       <div className="d-flex align-items-center">
                         <h3>{course.name}</h3>
                       </div>
@@ -125,8 +129,8 @@ const StudentDashboard = ({ profile, token }) => {
                         <div
                           className="progress-bar bg-danger"
                           role="progressbar"
-                          style={{ width: `${course.progress}%`, height: '5px' }}
-                          aria-valuenow={course.progress}
+                          style={{ width: `${course.user_progress}%`, height: '5px' }}
+                          aria-valuenow={course.user_progress}
                           aria-valuemin="0"
                           aria-valuemax="100"
                         ></div>
