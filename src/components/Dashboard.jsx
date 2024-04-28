@@ -6,8 +6,11 @@ import '../css/Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const Dashboard = ({ token }) => {
+const Dashboard = () => {
+  const token = localStorage.getItem('token');
+//   console.log("token",token);
   const [profile, setProfile] = useState(null);
+
   const [loading, setLoading] = useState(false);
   const [user_profile, setUserProfile] = useState(JSON.parse(localStorage.getItem('user')));
   useEffect(() => {
