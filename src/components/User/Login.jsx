@@ -49,7 +49,6 @@ export default function SignInSide() {
       console.log('Login response:', data);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      
       localStorage.setItem('token', data.jwt);
       localStorage.setItem('user', JSON.stringify(data.user));
       console.log("REsponse ",response)
