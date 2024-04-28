@@ -70,10 +70,10 @@ const Comment = ({ comment, addReply, deleteComment, editComment }) => {
             className="reply-textarea"
             id={`reply-textarea-${comment.id}`}
           />
-          <button onClick={handleReply} className="reply-button" id={`reply-button-${comment.id}`}>
+          <button onClick={handleReply} className="reply-button btn btn-sm btn-primary" id={`reply-button-${comment.id}`} >
             Reply
           </button>
-          <button onClick={toggleReplies} id={`toggle-replies-${comment.id}`}>
+          <button onClick={toggleReplies} id={`toggle-replies-${comment.id}`} className='btn btn-sm btn-success'>
             {showReplies
               ? `Hide ${comment.replies.length} replies`
               : 'Show replies'}
@@ -94,8 +94,8 @@ const Comment = ({ comment, addReply, deleteComment, editComment }) => {
           )}
 
 
-          <button onClick={handleDelete} id={`delete-button-${comment.id}`}>Delete</button>
-          <button onClick={handleEdit} id={`edit-comment-${comment.id}`}>Edit</button>
+          <button onClick={handleDelete} id={`delete-button-${comment.id}`} className='btn btn-sm btn-danger'>Delete</button>
+          <button onClick={handleEdit} id={`edit-comment-${comment.id}`} className='btn btn-sm btn-primary'>Edit</button>
         </div>
       )}
     </div>
