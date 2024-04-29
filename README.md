@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# PILOT - FRONTEND DOCUMENTATION
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Overview:- PILOT is a comprehensive Learning Management System designed to streamline the process of education delivery, course management, and student engagement. PILOT offers a range of features including course viewing, creation, and management, quizzes, commenting, and analytics. This documentation will guide you through the installation, setup, and usage of PILOT.
 
-## Available Scripts
+## Getting Started with frontend
 
-In the project directory, you can run:
+To install PILOT locally, follow these steps:
+1. Clone the repository from GitHub: 
+2. Navigate to the frontend directory and run npm install to install frontend dependencies.
+3. Navigate to the backend directory and set up a virtual environment.
+4. Run pip install -r requirements.txt to install backend dependencies.
+5. Set up the database and migrations using Django's manage.py commands.
+6. Configure the backend settings including database settings, secret key, and any other required configurations.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Running the Application:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+Once installed, follow these steps to run PILOT:
+1. Start the Django development server by running python manage.py runserver.
+2. Navigate to the frontend directory and run npm start to start the React development server.
+3. Access the application in your web browser at http://localhost:3000
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Project Structure:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+PILOT's project structure is organized as follows:
+frontend/: Contains all frontend source code built using ReactJS.
+backend/: Contains all backend source code built using Django.
+docs/: Documentation files.
+requirements.txt: List of Python dependencies.
+package.json: List of Node.js dependencies.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Technologies Used:
+Frontend: ReactJS, CSS and material ui
+Backend: Django
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Features:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+PILOT offers the following key features:
+Course Viewing: Browse and access available courses.
+Enroll in courses as a student
+Course Creation and Management: Create, update, and delete courses.
+Quizzes: Take quizzes related to course materials.
+Commenting: Engage in discussions and comment on course content.
+Analytics: View analytics and insights on course performance.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Usage:
+ Once the application is running, users can:
+Log in to access their dashboard.
+Browse available courses.
+Create new courses (for administrators).
+Enroll in courses.
+Take quizzes and view results.
+Engage in discussions and comment on course content.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Contributing
+We welcome contributions to PILOT! To contribute:
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Make your changes and submit a pull request.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
