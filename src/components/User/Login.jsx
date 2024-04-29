@@ -13,9 +13,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import backgroundImage from '../../images/login.jpg';
+import { useNavigate } from 'react-router-dom';
+
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
+  const navigate = useNavigate();
+
   const [error, setError] = useState(null);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,8 +56,9 @@ export default function SignInSide() {
       localStorage.setItem('token', data.jwt);
       localStorage.setItem('user', JSON.stringify(data.user));
       console.log("REsponse ",response)
-      window.location.href = '/'; // Redirect to the desired page after successful login
-      console.log('token:', data.key);
+      navigate('/dashboard');
+      // window.location.href = '/'; // Redirect to the desired page after successful login
+      console.log('token:', data.token);
       console.log('user:', data.user)
       console.log('Login successful');
     } catch (error) {
@@ -142,7 +147,7 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

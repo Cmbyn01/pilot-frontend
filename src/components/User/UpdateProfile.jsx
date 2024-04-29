@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate ,useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const UpdateProfile = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
   const [formData, setFormData] = useState({
@@ -64,34 +65,47 @@ const UpdateProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formDataToSend = new FormData();
     for (const key in formData) {
-      if (key === 'image_profile')
-        console.log('image_profile:', formData[key]);
-      else if (formData[key] !== '' && formData[key] !== null)
+      if (key === 'image_profile') {
         formDataToSend.append(key, formData[key]);
-
+      } else if (formData[key] !== '' && formData[key] !== null) {
+        formDataToSend.append(key, formData[key]);
+      }
     }
+  
     const user_token = localStorage.getItem('token');
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + user_token);
     myHeaders.append("Cookie", "csrftoken=" + csrfcookie());
     myHeaders.append("X-CSRFToken", csrfcookie());
-
+  
     const requestOptions = {
       method: "PATCH",
       headers: myHeaders,
       redirect: "follow",
       body: formDataToSend,
     };
-
+  
     fetch("http://127.0.0.1:8000/user/update_profile/", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to update profile');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        // Update local storage user item with the new profile data
+        localStorage.setItem('user', JSON.stringify(data.profile));
+        navigate('/profile');
+      })
       .catch((error) => console.error(error));
   };
-
+  
+      
+  
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>

@@ -1,29 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import axios from 'axios';
 
-function UserDetails({ profiles }) {
+function UserDetails() {
     const [searchTerm, setSearchTerm] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
     const [showError, setShowError] = useState(false);
+    const [profiles, setProfiles] = useState([]);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
+    // now put get request again to get details of profiles
+
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/user/get_all_profiles/',
+    {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+    }).then((response) => {
+        setProfiles(response.data);
+        console.log(profiles)
+    }).catch((error) => {
+        console.error('Error fetching profiles:', error);
+    });
+    }, [])
+
     const filteredProfiles = profiles.filter(profile =>
-        profile.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        profile.email.toLowerCase().includes(searchTerm.toLowerCase())
+    (profile.name && profile.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+    (profile.email && profile.email.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
     const makeTeacher = async (profileId) => {
         try {
-            const response = await fetch(`/api/make_teacher/${profileId}`, {
+            const response = await fetch(`http://127.0.0.1:8000/courses/status/make_teacher/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                body: JSON.stringify({ profile_id: profileId }),
             });
 
             if (!response.ok) {
