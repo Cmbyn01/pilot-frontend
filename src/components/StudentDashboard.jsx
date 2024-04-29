@@ -14,7 +14,7 @@ const StudentDashboard = ({ profile, token }) => {
       try {
         const user_token = localStorage.getItem('token');
         console.log('user_token:', user_token)
-        const response = await fetch('http://127.0.0.1:8000/courses/user_enrolled_courses', {
+        const response = await fetch('http://127.0.0.1:8000/courses/user_enrolled_courses/', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${user_token}`,

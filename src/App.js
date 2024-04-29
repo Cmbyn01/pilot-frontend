@@ -17,6 +17,7 @@ import CourseViewPage from './components/Website/courseviewpage';
 import CourseContent from './components/course_base';
 import AllCourses from './components/Website/allcourses';
 import UserProfile from './components/User/UserProfile';
+import UserProfileID from './components/UserProfileID';
 import UpdateProfile from './components/User/UpdateProfile';
 import CreateCourseForm from './components/Website/create_course';
 import UserDetails from './components/Website/make_teacher';
@@ -49,6 +50,7 @@ function App() {
           {/* <Route path='/courseviewpage' element={<CourseViewPage />} /> */}
           {/* <Route path='/coursebase' element={<CourseContent />} /> */}
           <Route path='/allcourses' element={<AllCourses />} />
+          <Route path='/profile/:profileId' element={<UserProfileID />} />
           <Route path='/profile' element={<UserProfile />} />
           <Route path='/update_profile' element={<UpdateProfile />} />
           <Route path='/create_course' element={<CreateCourseForm />} />
