@@ -101,7 +101,7 @@ const CoursesList = () => {
         {courses.map(course => (
           <div key={course.id} className="col-md-4 mb-4">
             <div className="card">
-              <img src={course.image_course_course.url} alt={course.name} className="card-img-top" />
+              <img src={course.image_course.url} alt={course.name} className="card-img-top" />
               <div className="card-body">
                 <h5 className="card-title" style={{ maxHeight: '3.6em', overflow: 'hidden' }}>{course.name}</h5> {/* Limiting to 2 lines */}
                 <h6 className="card-subtitle mb-2 text-muted" style={{ maxHeight: '2.4em', overflow: 'hidden' }}>{course.teacher.profile.name}</h6> {/* Limiting to 1 line */}
@@ -130,7 +130,7 @@ const CoursesList = () => {
       </div>
     </div>
   );
-  
+
 };
 
 export default CoursesList;

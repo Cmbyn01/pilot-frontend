@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import '../../css/Comment.css';
 
 const Comment = ({ comment, addReply, deleteComment, editComment }) => {
   const [newReply, setNewReply] = useState('');
   const [showReplies, setShowReplies] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-  const [editText, setEditText] = useState(comment.text);
+  const [editText, setEditText] = useState(comment.description);
 
   const handleReply = () => {
     if (newReply.trim() === '') return;
@@ -40,7 +40,10 @@ const Comment = ({ comment, addReply, deleteComment, editComment }) => {
   const toggleReplies = () => {
     setShowReplies(prevState => !prevState);
   };
-
+  useEffect(() => {
+    // console.log('Comment Inside Container:', comment);
+  }
+  , [comment]);
   return (
     <div className="comment" id={`comment-${comment.id}`}>
       {isEditing ? (
@@ -59,7 +62,7 @@ const Comment = ({ comment, addReply, deleteComment, editComment }) => {
         </div>
       ) : (
         <div>
-          <p>{comment.text}</p>
+          <p>{comment.description}</p>
           <textarea
             rows="2"
             cols="40"

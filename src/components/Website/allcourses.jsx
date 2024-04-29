@@ -68,10 +68,10 @@ const AllCourses = () => {
       <div className="m-5 d-flex flex-wrap justify-content-center gap-3">
         {courses.map((course) => (
           //replace with correct url
-          <a key={course.id} href={`/course_detail/${course.id}`}>
+          <a key={course.id} href={`/course_detail/${course.id}`} isAuthenticated="true">
             <div className="card border-0 shadow" style={{ width: '18rem' }}>
               <img
-                src={course.image_course_course}
+                src={course.image_course}
                 className="card-img-top"
                 width="100%"
                 height="180px"

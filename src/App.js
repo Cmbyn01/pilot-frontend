@@ -43,7 +43,7 @@ function App() {
           <Route path='/analytics' element={<Analytics />} />
           <Route path='/contact' element={<ContactUs />} />
           <Route path='/videoplayer' element={<VideoPlayer />} />
-          <Route path='/coursevideoplayer' element={<CourseVideoPlayer />} />
+          <Route path='/coursevideoplayer/:id' element={<CourseVideoPlayer />} />
           {/* <Route path='/courseviewpage' element={<CourseViewPage />} /> */}
           {/* <Route path='/coursebase' element={<CourseContent />} /> */}
           {/* <Route path='/courseviewpage' element={<CourseViewPage />} /> */}

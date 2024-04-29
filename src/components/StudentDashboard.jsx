@@ -140,7 +140,9 @@ const StudentDashboard = ({ profile, token }) => {
                       </div>
                     </div>
                     <div className="mx-5">
-                      <button className="btn btn-outline-primary">
+                      <button className="btn btn-outline-primary" onClick={ () => {
+                        window.location.href = `/course_detail/${course?.id}`}
+                      }>
                         <i className="fa-solid fa-circle-play"></i> Continue
                       </button>
                     </div>

@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import '../../css/VideoPlayer.css';
 import '../../css/Home.css'
-const VideoPlayer = () => {
+const VideoPlayer = ({selectedVideo,handleVideoSelection}) => {
   const [courseVideos, setCourseVideos] = useState([
     { id: 1, title: 'Course 1 Video 1', url: '/Shivesh2.mp4' },
     { id: 2, title: 'Course 1 Video 2', url: '/video1.mp4' },
@@ -34,13 +34,15 @@ const VideoPlayer = () => {
       });
     };
   
-
-  const [selectedVideo, setSelectedVideo] = useState(courseVideos[0]);
   const playerRef = useRef(null);
 
-  const handleVideoSelection = (video) => {
-    setSelectedVideo(video);
-  };
+  useEffect(() => {
+    if (selectedVideo) {
+      playerRef.current.seekTo(0);
+    }
+    console.log('Selected video:', selectedVideo);
+  }
+  , [selectedVideo]);
 
   return (
     <div>
@@ -64,7 +66,7 @@ const VideoPlayer = () => {
     <div className="video-player" >
       <ReactPlayer
         ref={playerRef}
-        url={selectedVideo.url}
+        url={selectedVideo?.video}
         width="100%"
         height="100%"
         controls={true}
